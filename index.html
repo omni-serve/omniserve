@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OmniServe - Digital Solutions Redefined</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+        
+        * {
+            font-family: 'JetBrains Mono', 'Space Mono', monospace;
+            /* Prevent text selection */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            /* Prevent drag and drop */
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+        }
+
+        /* Allow text selection only for form inputs */
+        input, textarea, select {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
+
+        /* Disable image dragging */
+        img {
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+            pointer-events: none;
+        }
+
+        /* Re-enable pointer events for portfolio images that need to be clickable */
+        .portfolio-image {
+            pointer-events: auto;
+        }
+
+        /* Disable right-click context menu */
+        body {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #ffffff, #a1a1aa, #71717a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-gradient-text {
+            background: linear-gradient(135deg, #ffffff, #e4e4e7, #a1a1aa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        
+        .glass-hover:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        
+        .floating {
+            animation: floating 8s ease-in-out infinite;
+        }
+        
+        .floating-delayed {
+            animation: floating 12s ease-in-out infinite;
+            animation-delay: -4s;
+        }
+        
+        .pulse-glow {
+            animation: pulse-glow 4s ease-in-out infinite;
+        }
+        
+        .scroll-indicator {
+            animation: scroll-bounce 2s infinite;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fade-in 1.2s ease-out forwards;
+        }
+        
+        .fade-in-delay-1 { animation-delay: 0.2s; }
+        .fade-in-delay-2 { animation-delay: 0.4s; }
+        .fade-in-delay-3 { animation-delay: 0.6s; }
+        .fade-in-delay-4 { animation-delay: 0.8s; }
+        .fade-in-delay-5 { animation-delay: 1.0s; }
+        .fade-in-delay-6 { animation-delay: 1.2s; }
+        
+        .hover-lift:hover {
+            transform: translateY(-8px);
+        }
+        
+        .hover-scale:hover {
+            transform: scale(1.02);
+        }
+        
+        .hover-scale-sm:hover {
+            transform: scale(1.01);
+        }
+        
+        .splash-logo {
+            animation: splash-logo 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
+        
+        .splash-float {
+            animation: splash-float 6s ease-in-out infinite;
+        }
+        
+        .splash-text {
+            animation: splash-text 1.5s ease-out 2s forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .splash-line {
+            animation: splash-line 4s ease-in-out infinite;
+        }
+        
+        /* Animated Background Shapes */
+        .bg-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.1;
+            animation: morph 20s ease-in-out infinite;
+        }
+        
+        .bg-shape-1 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(45deg, #ffffff, #d4d4d8);
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .bg-shape-2 {
+            width: 200px;
+            height: 400px;
+            background: linear-gradient(135deg, #f4f4f5, #a1a1aa);
+            top: 60%;
+            right: 15%;
+            animation-delay: -5s;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        }
+        
+        .bg-shape-3 {
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(225deg, #e4e4e7, #71717a);
+            bottom: 20%;
+            left: 20%;
+            animation-delay: -10s;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        }
+        
+        .bg-shape-4 {
+            width: 180px;
+            height: 320px;
+            background: linear-gradient(315deg, #ffffff, #9ca3af);
+            top: 30%;
+            right: 30%;
+            animation-delay: -15s;
+            border-radius: 40% 60% 60% 40% / 60% 40% 40% 60%;
+        }
+        
+        .bg-shape-5 {
+            width: 350px;
+            height: 200px;
+            background: linear-gradient(90deg, #f9fafb, #6b7280);
+            bottom: 40%;
+            right: 10%;
+            animation-delay: -7s;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+        }
+        
+        @keyframes morph {
+            0%, 100% {
+                transform: translateX(0) translateY(0) rotate(0deg) scale(1);
+                border-radius: 50%;
+            }
+            25% {
+                transform: translateX(30px) translateY(-50px) rotate(90deg) scale(1.1);
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            }
+            50% {
+                transform: translateX(-20px) translateY(30px) rotate(180deg) scale(0.9);
+                border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            }
+            75% {
+                transform: translateX(40px) translateY(20px) rotate(270deg) scale(1.05);
+                border-radius: 40% 60% 60% 40% / 60% 40% 40% 60%;
+            }
+        }
+        
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-15px) rotate(1deg); }
+            66% { transform: translateY(10px) rotate(-1deg); }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.; transform: scale(1); }
+            50% { opacity: 0.2; transform: scale(1.05); }
+        }
+        
+        @keyframes scroll-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(8px); }
+        }
+        
+        @keyframes fade-in {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes splash-logo {
+            from {
+                transform: scale(0) rotate(-180deg);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) rotate(0deg);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes splash-float {
+            0%, 100% { transform: translateY(-8px) rotate(0deg); }
+            50% { transform: translateY(8px) rotate(1deg); }
+        }
+        
+        @keyframes splash-text {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes splash-line {
+            0%, 100% { transform: scaleX(0); }
+            50% { transform: scaleX(1); }
+        }
+        
+        .service-gradient { background: linear-gradient(135deg, #ffffff, #e4e4e7, #dedee4); }
+        .tag-gradient { background: linear-gradient(135deg, #f4f4f5, #d4d4d8); }
+        
+        .hidden { display: none; }
+        .block { display: block; }
+        
+        .rtl { direction: rtl; }
+        .ltr { direction: ltr; }
+        
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #262626;
+            border-radius: 3px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #404040;
+        }
+        
+        /* Typography refinements */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 300;
+            letter-spacing: -0.02em;
+        }
+        
+        .mono-light {
+            font-weight: 200;
+            letter-spacing: 0.05em;
+        }
+        
+        .mono-regular {
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+        
+        .mono-medium {
+            font-weight: 500;
+            letter-spacing: 0.01em;
+        }
+        
+        /* Elegant button styles */
+        .btn-elegant {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-elegant:hover {
+            background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.08));
+            border: 1px solid rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Fixed Portfolio Image Hover Effect */
+        .portfolio-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-card:hover {
+            cursor: pointer;
+        }
+
+        .portfolio-image {
+            filter: grayscale(100%) brightness(0.8);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: scale(1);
+            cursor: pointer !important;
+        }
+
+        .portfolio-card:hover .portfolio-image {
+            filter: grayscale(0%) brightness(1);
+            transform: scale(1.05);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .portfolio-card:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-link-icon {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .portfolio-card:hover .portfolio-link-icon {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Main content fade-in after splash */
+        .main-content {
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .main-content.show {
+            opacity: 1;
+        }
+
+        /* Audio player styling */
+        .audio-player {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .audio-player audio {
+            width: 100%;
+            height: 40px;
+            outline: none;
+        }
+
+        .audio-player audio::-webkit-media-controls-panel {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .audio-player audio::-webkit-media-controls-play-button,
+        .audio-player audio::-webkit-media-controls-pause-button {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+        }
+
+        .audio-player audio::-webkit-media-controls-timeline {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+        }
+
+        .audio-player audio::-webkit-media-controls-current-time-display,
+        .audio-player audio::-webkit-media-controls-time-remaining-display {
+            color: white;
+            text-shadow: none;
+        }
+
+    </style>
+</head>
+<body class="bg-black text-white smooth-scroll overflow-x-hidden">
+    <!-- Splash Screen -->
+    <div id="splash-screen" class="fixed inset-0 bg-black flex items-center justify-center z-50 overflow-hidden">
+        <div class="absolute inset-0">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-white/5 to-gray-500/5 rounded-full blur-3xl pulse-glow"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-gray-400/5 to-white/5 rounded-full blur-3xl pulse-glow" style="animation-delay: -2s;"></div>
+        </div>
+        
+        <div class="relative z-10 splash-logo">
+            <div class="relative splash-float">
+                <div class="absolute inset-0 bg-gradient-to-r from-white/10 to-gray-400/10 rounded-full blur-2xl scale-150 pulse-glow"></div>
+                <svg class="relative z-10 drop-shadow-2xl" width="140" height="140" viewBox="0 0 137.84 126.09" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <clipPath id="clip-path">
+                            <path fill="none" d="M89.05,0H48A27.5,27.5,0,0,0,24.2,13.76L3.69,49.28a27.5,27.5,0,0,0,0,27.52L24.2,112.33A27.52,27.52,0,0,0,48,126.09h41a27.53,27.53,0,0,0,23.83-13.76L133.39,76.8a27.5,27.5,0,0,0,0-27.52L112.88,13.76A27.51,27.51,0,0,0,89.05,0Z" transform="translate(0.38 0)"/>
+                        </clipPath>
+                    </defs>
+                    <path fill="#0a0a0a" d="M68.54,0h0a63.06,63.06,0,0,0-54.6,31.52h0a63,63,0,0,0,0,63h0a63,63,0,0,0,54.6,31.53h0a63,63,0,0,0,54.59-31.53h0a63,63,0,0,0,0-63h0A63,63,0,0,0,68.54,0Z" transform="translate(0.38 0)"/>
+                    <g clip-path="url(#clip-path)">
+                        <path fill="none" stroke="#fff" stroke-linejoin="bevel" stroke-width="2px" d="M.84,40.12,60.1,99.38a21.11,21.11,0,0,0,29.85,0h0a21.11,21.11,0,0,0,0-29.85L74.88,54.46" transform="translate(0.38 0)"/>
+                        <path fill="none" stroke="#fff" stroke-linejoin="bevel" stroke-width="2px" d="M136.24,86,77,26.71a21.11,21.11,0,0,0-29.85,0h0a21.11,21.11,0,0,0,0,29.85L62.2,71.63" transform="translate(0.38 0)"/>
+                        <circle fill="none" stroke="#fff" stroke-linejoin="bevel" stroke-width="2px" cx="70.51" cy="49.71" r="6.65"/>
+                        <path fill="none" stroke="#fff" stroke-linejoin="bevel" stroke-width="2px" d="M71.59,71.61a6.65,6.65,0,1,1-9.41,0A6.65,6.65,0,0,1,71.59,71.61Z" transform="translate(0.38 0)"/>
+                    </g>
+                </svg>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-24 text-center splash-text">
+            <h1 class="text-2xl mono-light tracking-[0.8em] text-white mb-8 pulse-glow">OMNISERVE</h1>
+            <div class="h-px w-32 bg-gradient-to-r from-transparent via-white/100 to-transparent mx-auto splash-line"></div>
+        </div>
+    </div>
+
+    <!-- Main Content Wrapper -->
+    <div id="main-content" class="main-content">
+        <!-- Animated Background Shapes -->
+        <div class="fixed inset-0 pointer-events-none z-0">
+            <div class="bg-shape bg-shape-1"></div>
+            <div class="bg-shape bg-shape-2"></div>
+            <div class="bg-shape bg-shape-3"></div>
+            <div class="bg-shape bg-shape-4"></div>
+            <div class="bg-shape bg-shape-5"></div>
+        </div>
+
+        <!-- Navigation -->
+        <nav id="navbar" class="fixed top-0 w-full z-40 glass border-b border-white/5 transition-transform duration-500" style="transform: translateY(-100px);">
+            <div class="max-w-7xl mx-auto px-6 py-6">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4 hover-scale cursor-pointer">
+                        <svg width="32" height="32" viewBox="0 0 137.84 126.09" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <clipPath id="nav-clip-path">
+                                    <path fill="none" d="M89.05,0H48A27.5,27.5,0,0,0,24.2,13.76L3.69,49.28a27.5,27.5,0,0,0,0,27.52L24.2,112.33A27.52,27.52,0,0,0,48,126.09h41a27.53,27.53,0,0,0,23.83-13.76L133.39,76.8a27.5,27.5,0,0,0,0-27.52L112.88,13.76A27.51,27.51,0,0,0,89.05,0Z" transform="translate(0.38 0)"/>
+                                </clipPath>
+                            </defs>
+                            <path fill="#0a0a0a" d="M68.54,0h0a63.06,63.06,0,0,0-54.6,31.52h0a63,63,0,0,0,0,63h0a63,63,0,0,0,54.6,31.53h0a63,63,0,0,0,54.59-31.53h0a63,63,0,0,0,0-63h0A63,63,0,0,0,68.54,0Z" transform="translate(0.38 0)"/>
+                            <g clip-path="url(#nav-clip-path)">
+                                <path fill="none" stroke="#fff" stroke-linejoin="bevel" stroke-width="2px" d="M.84,40.12,60.1,99.38a21.11,21.11,0,0,0,29.85,0h0a21.11,21.11,0,0,0,0-29.85L74.88,54.46" transform="translate(0.38 0)"/>
+                                <path fill="none" stroke="#fff" stroke-linejoin="bevel" stroke-width="2px" d="M136.24,86,77,26.71a21.11,21.11,0,0,0-29.85,0h0a21.11,21.11,0,0,0,0,29.85L62.2,71.63" transform="translate(0.38 0)"/>
+                                <circle fill="none" stroke="#fff" stroke-linejoin="bevel" stroke-width="2px" cx="70.51" cy="49.71" r="6.65"/>
+                                <path fill="none" stroke="#fff" stroke-linejoin="bevel" stroke-width="2px" d="M71.59,71.61a6.65,6.65,0,1,1-9.41,0A6.65,6.65,0,0,1,71.59,71.61Z" transform="translate(0.38 0)"/>
+                            </g>
+                        </svg>
+                        <span class="text-lg mono-medium">OMNISERVE</span>
+                    </div>
+
+                    <!-- Desktop Navigation -->
+                    <div class="hidden md:flex items-center space-x-12">
+                        <button onclick="scrollToSection('home')" class="nav-link mono-regular text-sm transition-colors hover:text-white text-white">HOME</button>
+                        <button onclick="scrollToSection('services')" class="nav-link mono-regular text-sm transition-colors hover:text-white text-white/60">SERVICES</button>
+                        <button onclick="scrollToSection('portfolio')" class="nav-link mono-regular text-sm transition-colors hover:text-white text-white/60">PORTFOLIO</button>
+                        <button onclick="scrollToSection('about')" class="nav-link mono-regular text-sm transition-colors hover:text-white text-white/60">ABOUT</button>
+                        <button onclick="scrollToSection('contact')" class="nav-link mono-regular text-sm transition-colors hover:text-white text-white/60">CONTACT</button>
+                        <button onclick="toggleLanguage()" class="text-white/60 hover:text-white flex items-center space-x-2 px-4 py-2 rounded-md btn-elegant transition-all">
+                            <i data-lucide="globe" class="w-4 h-4"></i>
+                            <span id="lang-toggle" class="mono-regular text-sm">العربية</span>
+                        </button>
+                    </div>
+
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="md:hidden text-white/60 hover:text-white p-2 rounded-md btn-elegant transition-all">
+                        <i data-lucide="menu" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div id="mobile-menu" class="md:hidden glass border-t border-white/5 hidden">
+                <div class="px-6 py-6 space-y-6">
+                    <button onclick="scrollToSection('home')" class="block w-full text-left text-white/60 hover:text-white transition-colors mono-regular">HOME</button>
+                    <button onclick="scrollToSection('services')" class="block w-full text-left text-white/60 hover:text-white transition-colors mono-regular">SERVICES</button>
+                    <button onclick="scrollToSection('portfolio')" class="block w-full text-left text-white/60 hover:text-white transition-colors mono-regular">PORTFOLIO</button>
+                    <button onclick="scrollToSection('about')" class="block w-full text-left text-white/60 hover:text-white transition-colors mono-regular">ABOUT</button>
+                    <button onclick="scrollToSection('contact')" class="block w-full text-left text-white/60 hover:text-white transition-colors mono-regular">CONTACT</button>
+                    <button onclick="toggleLanguage()" class="text-white/60 hover:text-white flex items-center space-x-2 mono-regular">
+                        <i data-lucide="globe" class="w-4 h-4"></i>
+                        <span>العربية</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden">
+            <div class="relative z-10 text-center max-w-6xl mx-auto px-6">
+                <div class="fade-in">
+                    <h1 class="text-5xl md:text-9xl mono-light mb-8 hero-gradient-text leading-none" data-translate="hero.title">DIGITAL<br>SOLUTIONS</h1>
+                    <h2 class="text-3xl md:text-5xl mono-light mb-12 text-white/70 tracking-wide" data-translate="hero.subtitle">REDEFINED</h2>
+                    <p class="text-lg md:text-xl text-white/50 mb-16 max-w-3xl mx-auto leading-relaxed mono-regular" data-translate="hero.description">
+                        We craft exceptional digital experiences that transform ideas into reality. From stunning visuals to cutting-edge development.
+                    </p>
+                    <button onclick="scrollToSection('services')" class="btn-elegant text-white px-12 py-4 mono-medium text-sm rounded-none transition-all duration-300 flex items-center space-x-3 mx-auto hover-scale">
+                        <span data-translate="hero.cta">EXPLORE OUR WORK</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="absolute bottom-12 left-1/2 transform -translate-x-1/2 scroll-indicator">
+                <div class="w-px h-16 bg-gradient-to-b from-white/30 to-transparent"></div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-32 relative z-10">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-24 fade-in">
+                    <h2 class="text-4xl md:text-6xl mono-light mb-8 gradient-text" data-translate="services.title">OUR EXPERTISE</h2>
+                    <p class="text-lg text-white/50 max-w-2xl mx-auto mono-regular" data-translate="services.subtitle">Comprehensive digital solutions tailored to your needs</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Service Cards -->
+                    <div class="glass glass-hover rounded-none p-12 hover-lift transition-all duration-500 fade-in fade-in-delay-1 border-l-2 border-white/20">
+                        <div class="w-12 h-12 service-gradient flex items-center justify-center mb-8 hover-scale transition-transform duration-300">
+                            <i data-lucide="palette" class="w-6 h-6 text-black"></i>
+                        </div>
+                        <h3 class="text-xl mono-medium mb-6 text-white">GRAPHIC DESIGN</h3>
+                        <p class="text-white/60 mb-6 leading-relaxed mono-regular text-sm">Visual storytelling that captivates and converts</p>
+                        <p class="text-xs text-white/40 mono-light">Brand identity, logos, print design, digital graphics</p>
+                    </div>
+
+                    <div class="glass glass-hover rounded-none p-12 hover-lift transition-all duration-500 fade-in fade-in-delay-2 border-l-2 border-white/20">
+                        <div class="w-12 h-12 service-gradient flex items-center justify-center mb-8 hover-scale transition-transform duration-300">
+                            <i data-lucide="code" class="w-6 h-6 text-black"></i>
+                        </div>
+                        <h3 class="text-xl mono-medium mb-6 text-white">WEB DEVELOPMENT</h3>
+                        <p class="text-white/60 mb-6 leading-relaxed mono-regular text-sm">Modern, responsive websites that perform</p>
+                        <p class="text-xs text-white/40 mono-light">React, Next.js, custom CMS, e-commerce solutions</p>
+                    </div>
+
+                    <div class="glass glass-hover rounded-none p-12 hover-lift transition-all duration-500 fade-in fade-in-delay-3 border-l-2 border-white/20">
+                        <div class="w-12 h-12 service-gradient flex items-center justify-center mb-8 hover-scale transition-transform duration-300">
+                            <i data-lucide="smartphone" class="w-6 h-6 text-black"></i>
+                        </div>
+                        <h3 class="text-xl mono-medium mb-6 text-white">MOBILE DEVELOPMENT</h3>
+                        <p class="text-white/60 mb-6 leading-relaxed mono-regular text-sm">Native and cross-platform mobile applications</p>
+                        <p class="text-xs text-white/40 mono-light">iOS, Android, React Native, Flutter</p>
+                    </div>
+
+                    <div class="glass glass-hover rounded-none p-12 hover-lift transition-all duration-500 fade-in fade-in-delay-4 border-l-2 border-white/20">
+                        <div class="w-12 h-12 service-gradient flex items-center justify-center mb-8 hover-scale transition-transform duration-300">
+                            <i data-lucide="headphones" class="w-6 h-6 text-black"></i>
+                        </div>
+                        <h3 class="text-xl mono-medium mb-6 text-white">AUDIO PRODUCTION</h3>
+                        <p class="text-white/60 mb-6 leading-relaxed mono-regular text-sm">Professional audio that resonates</p>
+                        <p class="text-xs text-white/40 mono-light">Podcasts, music production, sound design, mixing</p>
+                    </div>
+
+                    <div class="glass glass-hover rounded-none p-12 hover-lift transition-all duration-500 fade-in fade-in-delay-5 border-l-2 border-white/20">
+                        <div class="w-12 h-12 service-gradient flex items-center justify-center mb-8 hover-scale transition-transform duration-300">
+                            <i data-lucide="video" class="w-6 h-6 text-black"></i>
+                        </div>
+                        <h3 class="text-xl mono-medium mb-6 text-white">VIDEO EDITING</h3>
+                        <p class="text-white/60 mb-6 leading-relaxed mono-regular text-sm">Cinematic storytelling through motion</p>
+                        <p class="text-xs text-white/40 mono-light">Corporate videos, commercials, social media content</p>
+                    </div>
+
+                    <div class="glass glass-hover rounded-none p-12 hover-lift transition-all duration-500 fade-in fade-in-delay-6 border-l-2 border-white/20">
+                        <div class="w-12 h-12 service-gradient flex items-center justify-center mb-8 hover-scale transition-transform duration-300">
+                            <i data-lucide="figma" class="w-6 h-6 text-black"></i>
+                        </div>
+                        <h3 class="text-xl mono-medium mb-6 text-white">UX/UI DESIGN</h3>
+                        <p class="text-white/60 mb-6 leading-relaxed mono-regular text-sm">Intuitive interfaces that users love</p>
+                        <p class="text-xs text-white/40 mono-light">User research, wireframing, prototyping, testing</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="py-32 bg-white/[0.02] relative z-10">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-24 fade-in">
+                    <h2 class="text-4xl md:text-6xl mono-light mb-8 gradient-text" data-translate="portfolio.title">SOME OF OUR WORK</h2>
+                    <p class="text-lg text-white/50 max-w-2xl mx-auto mono-regular" data-translate="portfolio.subtitle">Showcasing excellence across all digital domains</p>
+                </div>
+
+                <div class="space-y-32">
+                    <!-- Graphic Design Projects -->
+                    <div class="fade-in">
+                        <h3 class="text-2xl mono-medium mb-16 text-center text-white/80 tracking-wider">GRAPHIC DESIGN</h3>
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                            <div class="glass glass-hover rounded-none overflow-hidden hover-scale-sm transition-all duration-500">
+                                <div class="portfolio-card" onclick="openImageInNewTab('./assets/sufi.png')" style="cursor: pointer;">
+                                    <img src="./assets/sufi.png" alt="sufi" class="portfolio-image w-full h-80 object-cover">
+                                    <div class="portfolio-overlay"></div>
+                                    <div class="portfolio-link-icon">
+                                        <i data-lucide="external-link" class="w-5 h-5 text-white"></i>
+                                    </div>
+                                </div>
+                                <div class="p-8">
+                                    <h4 class="text-lg mono-medium mb-4 text-white">Sufi Contimplation</h4>
+                                    <p class="text-white/60 mb-6 mono-regular text-sm">Artwork Design</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-3 py-1 text-xs rounded-none tag-gradient text-black mono-regular">BRANDING</span>
+                                        <span class="px-3 py-1 text-xs rounded-none tag-gradient text-black mono-regular">ARTWORK</span>
+                                        <span class="px-3 py-1 text-xs rounded-none tag-gradient text-black mono-regular">PRINT</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="glass glass-hover rounded-none overflow-hidden hover-scale-sm transition-all duration-500">
+                                <div class="portfolio-card" onclick="openImageInNewTab('./assets/brochure.png')" style="cursor: pointer;">
+                                    <img src="./assets/brochure.png" alt="Strategic Axis" class="portfolio-image w-full h-80 object-cover">
+                                    <div class="portfolio-overlay"></div>
+                                    <div class="portfolio-link-icon">
+                                        <i data-lucide="external-link" class="w-5 h-5 text-white"></i>
+                                    </div>
+                                </div>
+                                <div class="p-8">
+                                    <h4 class="text-lg mono-medium mb-4 text-white">Strategic Axis</h4>
+                                    <p class="text-white/60 mb-6 mono-regular text-sm">Brochure Design</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-3 py-1 text-xs rounded-none tag-gradient text-black mono-regular">IDENTITY</span>
+                                        <span class="px-3 py-1 text-xs rounded-none tag-gradient text-black mono-regular">DIGITAL</span>
+                                        <span class="px-3 py-1 text-xs rounded-none tag-gradient text-black mono-regular">BROCHURE</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Web Development Projects -->
+                    <div class="fade-in">
+                        <h3 class="text-2xl mono-medium mb-16 text-center text-white/80 tracking-wider">WEB DEVELOPMENT</h3>
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                           <div class="glass glass-hover rounded-none overflow-hidden hover-scale-sm transition-all duration-500">
+                                <div class="portfolio-card" onclick="openImageInNewTab('https://1ammar.github.io/ZainabAlkhayat/')" style="cursor: pointer;">
+                                    <img src="./assets/zainab.png" alt="portfolio" class="portfolio-image w-full h-80 object-cover">
+                                    <div class="portfolio-overlay"></div>
+                                    <div class="portfolio-link-icon">
+                                        <i data-lucide="external-link" class="w-5 h-5 text-white"></i>
+                                    </div>
+                                </div>
+                                <div class="p-8">
+                                    <h4 class="text-lg mono-medium mb-4 text-white">Nike Air Website</h4>
+                                    <p class="text-white/60 mb-6 mono-regular text-sm">Modern Website Experience</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-3 py-1 text-xs rounded-none tag-gradient text-black mono-regular">REACT</span>
+                                      
+                                        <span class="px-3 py-1 text-xs rounded-none tag-gradient text-black mono-regular">ANGULAR</span>
+                                          <span class="px-3 py-1 text-xs rounded-none tag-gradient text-black mono-regular">LARAVEL</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="glass glass-hover rounded-none overflow-hidden hover-scale-sm transition-all duration-500">
+                                <div class="portfolio-card" onclick="openImageInNewTab('./assets/nike.jpg')" style="cursor: pointer;">
+                                    <img src="./assets/nike.jpg" alt="nike" class="portfolio-image w-full h-80 object-cover">
+                                    <div class="portfolio-overlay"></div>
+                                    <div class="portfolio-link-icon">
+                                        <i data-lucide="external-link" class="w-5 h-5 text-white"></i>
+                                    </div>
+                                </div>
+                                <div class="p-8">
+                                    <h4 class="text-lg mono-medium mb-4 text-white">Nike Air Website</h4>
+                                    <p class="text-white/60 mb-6 mono-regular text-sm">Modern Website Experience</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-3 py-1 text-xs rounded-none tag-gradient text-black mono-regular">REACT</span>
+                                      
+                                        <span class="px-3 py-1 text-xs rounded-none tag-gradient text-black mono-regular">ANGULAR</span>
+                                          <span class="px-3 py-1 text-xs rounded-none tag-gradient text-black mono-regular">LARAVEL</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Development Projects -->
+                    <div class="fade-in">
+                        <h3 class="text-2xl mono-medium mb-16 text-center text-white/80 tracking-wider">MOBILE DEVELOPMENT</h3>
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                            <div class="glass glass-hover rounded-none overflow-hidden hover-scale-sm transition-all duration-500">
+                                <div class="portfolio-card" onclick="openImageInNewTab('./assets/ghannam.png')" style="cursor: pointer;">
+                                    <img src="./assets/ghannam.png" alt="Alghannam App" class="portfolio-image w-full h-80 object-cover">
+                                    <div class="portfolio-overlay"></div>
+                                    <div class="portfolio-link-icon">
+                                        <i data-lucide="external-link" class="w-5 h-5 text-white"></i>
+                                    </div>
+                                </div>
+                                <div class="p-8">
+                                    <h4 class="text-lg mono-medium mb-4 text-white">Transportation APP</h4>
+                                    <p class="text-white/60 mb-6 mono-regular text-sm">For Al-Ghannam Group</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-3 py-1 text-xs rounded-none tag-gradient text-black mono-regular">FLUTTER</span>
+                                        <span class="px-3 py-1 text-xs rounded-none tag-gradient text-black mono-regular">CMS</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- UX/UI Design Projects -->
+                    <div class="fade-in">
+                        <h3 class="text-2xl mono-medium mb-16 text-center text-white/80 tracking-wider">UX/UI DESIGN</h3>
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                            <div class="glass glass-hover rounded-none overflow-hidden hover-scale-sm transition-all duration-500">
+                                <div class="portfolio-card" onclick="openImageInNewTab('./assets/cars.png')" style="cursor: pointer;">
+                                    <img src="./assets/cars.png" alt="Car showroom" class="portfolio-image w-full h-80 object-cover">
+                                    <div class="portfolio-overlay"></div>
+                                    <div class="portfolio-link-icon">
+                                        <i data-lucide="external-link" class="w-5 h-5 text-white"></i>
+                                    </div>
+                                </div>
+                                <div class="p-8">
+                                    <h4 class="text-lg mono-medium mb-4 text-white">Car Showroom</h4>
+                                    <p class="text-white/60 mb-6 mono-regular text-sm">with modern looking uxui design</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-3 py-1 text-xs rounded-none tag-gradient text-black mono-regular">UI DESIGN</span>
+                                        <span class="px-3 py-1 text-xs rounded-none tag-gradient text-black mono-regular">FIGMA</span>
+                                        <span class="px-3 py-1 text-xs rounded-none tag-gradient text-black mono-regular">ADOBE XD</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                        </div>
+                    </div>
+
+                    <!-- Audio Production Projects -->
+                    <div class="fade-in">
+                        <h3 class="text-2xl mono-medium mb-16 text-center text-white/80 tracking-wider">AUDIO PRODUCTION</h3>
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                            <div class="glass glass-hover rounded-none p-8 hover-scale-sm transition-all duration-500">
+                                <div class="mb-6">
+                                    <div class="w-16 h-16 service-gradient flex items-center justify-center mb-6 mx-auto">
+                                        <i data-lucide="music" class="w-8 h-8 text-black"></i>
+                                    </div>
+                                    <h4 class="text-lg mono-medium mb-4 text-white text-center">Soundtrack Sample</h4>
+                                    <p class="text-white/60 mb-6 mono-regular text-sm text-center">we offer the best musical content that will satisfy your needs</p>
+                                </div>
+                                <div class="audio-player">
+                                    <audio controls controlsList="nodownload noplaybackrate">
+                                        <source src="./assets/music.mp3" type="audio/mpeg">
+                                        Your browser does not support the audio element.
+                                    </audio>
+                                </div>
+                                <div class="flex flex-wrap gap-2 mt-6 justify-center">
+                                    <span class="px-3 py-1 text-xs rounded-none tag-gradient text-black mono-regular">PODCAST</span>
+                                    <span class="px-3 py-1 text-xs rounded-none tag-gradient text-black mono-regular">VOICEOVER</span>
+                                    <span class="px-3 py-1 text-xs rounded-none tag-gradient text-black mono-regular">MIXING</span>
+                                </div>
+                            </div>
+
+                            <div class="glass glass-hover rounded-none p-8 hover-scale-sm transition-all duration-500">
+                                <div class="mb-6">
+                                    <div class="w-16 h-16 service-gradient flex items-center justify-center mb-6 mx-auto">
+                                        <i data-lucide="radio" class="w-8 h-8 text-black"></i>
+                                    </div>
+                                    <h4 class="text-lg mono-medium mb-4 text-white text-center">Voice Acting</h4>
+                                    <p class="text-white/60 mb-6 mono-regular text-sm text-center">our team delivers top-notch voice acting skills </p>
+                                </div>
+                                <div class="audio-player">
+                                    <audio controls controlsList="nodownload noplaybackrate">
+                                        <source src="./assets/Nolan FINAL DUB.wav" type="audio/mpeg">
+                                        Your browser does not support the audio element.
+                                    </audio>
+                                </div>
+                                <div class="flex flex-wrap gap-2 mt-6 justify-center">
+                                    <span class="px-3 py-1 text-xs rounded-none tag-gradient text-black mono-regular">COMMERCIAL</span>
+                                    <span class="px-3 py-1 text-xs rounded-none tag-gradient text-black mono-regular">JINGLE</span>
+                                    <span class="px-3 py-1 text-xs rounded-none tag-gradient text-black mono-regular">BRANDING</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-32 relative z-10">
+            <div class="max-w-4xl mx-auto px-6 text-center">
+                <div class="fade-in">
+                    <h2 class="text-4xl md:text-6xl mono-light mb-12 gradient-text" data-translate="about.title">ABOUT OMNISERVE</h2>
+                    <p class="text-xl md:text-2xl text-white/60 leading-relaxed mono-regular" data-translate="about.description">
+                        We are a team of passionate creators and innovators, dedicated to delivering exceptional digital solutions that drive success.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-32 bg-white/[0.02] relative z-10">
+            <div class="max-w-4xl mx-auto px-6">
+                <div class="text-center mb-20 fade-in">
+                    <h2 class="text-4xl md:text-6xl mono-light mb-8 gradient-text" data-translate="contact.title">LET'S CREATE TOGETHER</h2>
+                    <p class="text-lg text-white/60 mb-16 mono-regular" data-translate="contact.description">Ready to bring your vision to life? Get in touch with us.</p>
+                </div>
+
+                <div class="fade-in">
+                    <div id="contact-form" class="glass rounded-none p-12">
+                        <form id="contact-form-element" class="space-y-8" action="https://formspree.io/f/xwpodqed"
+  method="POST">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div>
+                                    <input type="text" name="name" placeholder="FULL NAME" required class="w-full p-4 bg-transparent border-b border-white/20 text-white placeholder:text-white/40 focus:border-white/60 focus:outline-none mono-regular text-sm transition-colors">
+                                </div>
+                                <div>
+                                    <input type="email" name="email" placeholder="EMAIL ADDRESS" required class="w-full p-4 bg-transparent border-b border-white/20 text-white placeholder:text-white/40 focus:border-white/60 focus:outline-none mono-regular text-sm transition-colors">
+                                </div>
+                            </div>
+                            <div>
+                                <select name="service" required class="w-full p-4 bg-transparent border-b border-white/20 text-white focus:border-white/60 focus:outline-none mono-regular text-sm transition-colors">
+                                    <option value="" class="bg-black">SERVICE NEEDED</option>
+                                    <option value="graphic-design" class="bg-black">GRAPHIC DESIGN</option>
+                                    <option value="web-development" class="bg-black">WEB DEVELOPMENT</option>
+                                    <option value="mobile-development" class="bg-black">MOBILE DEVELOPMENT</option>
+                                    <option value="audio-production" class="bg-black">AUDIO PRODUCTION</option>
+                                    <option value="video-editing" class="bg-black">VIDEO EDITING</option>
+                                    <option value="ux-ui-design" class="bg-black">UX/UI DESIGN</option>
+                                </select>
+                            </div>
+                            <div>
+                                <textarea name="message" placeholder="PROJECT DETAILS" required rows="6" class="w-full p-4 bg-transparent border-b border-white/20 text-white placeholder:text-white/40 focus:border-white/60 focus:outline-none resize-none mono-regular text-sm transition-colors"></textarea>
+                            </div>
+                            <button type="submit" class="w-full btn-elegant text-white py-6 mono-medium text-sm rounded-none transition-all duration-300 flex items-center justify-center space-x-3 hover-scale">
+                                <span>SEND MESSAGE</span>
+                                <i data-lucide="send" class="w-4 h-4"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                    <div id="success-message" class="glass rounded-none p-12 text-center py-20 hidden">
+                        <i data-lucide="check-circle" class="w-12 h-12 text-white mx-auto mb-6"></i>
+                        <h3 class="text-xl mono-medium text-white mb-4">MESSAGE SENT SUCCESSFULLY!</h3>
+                        <p class="text-white/60 mono-regular">We'll get back to you soon!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="border-t border-white/5 py-16 relative z-10">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                    <!-- Company Info -->
+                    <div class="md:col-span-2">
+                        <div class="flex items-center space-x-4 mb-6">
+                            <svg width="32" height="32" viewBox="0 0 137.84 126.09" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <clipPath id="footer-clip-path">
+                                        <path fill="none" d="M89.05,0H48A27.5,27.5,0,0,0,24.2,13.76L3.69,49.28a27.5,27.5,0,0,0,0,27.52L24.2,112.33A27.52,27.52,0,0,0,48,126.09h41a27.53,27.53,0,0,0,23.83-13.76L133.39,76.8a27.5,27.5,0,0,0,0-27.52L112.88,13.76A27.51,27.51,0,0,0,89.05,0Z" transform="translate(0.38 0)"/>
+                                    </clipPath>
+                                </defs>
+                                <path fill="#0a0a0a" d="M68.54,0h0a63.06,63.06,0,0,0-54.6,31.52h0a63,63,0,0,0,0,63h0a63,63,0,0,0,54.6,31.53h0a63,63,0,0,0,54.59-31.53h0a63,63,0,0,0,0-63h0A63,63,0,0,0,68.54,0Z" transform="translate(0.38 0)"/>
+                                <g clip-path="url(#footer-clip-path)">
+                                    <path fill="none" stroke="#fff" stroke-linejoin="bevel" stroke-width="2px" d="M.84,40.12,60.1,99.38a21.11,21.11,0,0,0,29.85,0h0a21.11,21.11,0,0,0,0-29.85L74.88,54.46" transform="translate(0.38 0)"/>
+                                    <path fill="none" stroke="#fff" stroke-linejoin="bevel" stroke-width="2px" d="M136.24,86,77,26.71a21.11,21.11,0,0,0-29.85,0h0a21.11,21.11,0,0,0,0,29.85L62.2,71.63" transform="translate(0.38 0)"/>
+                                    <circle fill="none" stroke="#fff" stroke-linejoin="bevel" stroke-width="2px" cx="70.51" cy="49.71" r="6.65"/>
+                                    <path fill="none" stroke="#fff" stroke-linejoin="bevel" stroke-width="2px" d="M71.59,71.61a6.65,6.65,0,1,1-9.41,0A6.65,6.65,0,0,1,71.59,71.61Z" transform="translate(0.38 0)"/>
+                                </g>
+                            </svg>
+                            <span class="mono-medium text-white text-xl">OMNISERVE</span>
+                        </div>
+                        <p class="text-white/60 mono-regular text-sm leading-relaxed mb-6">
+                            Crafting exceptional digital experiences that transform ideas into reality. Your trusted partner for innovative solutions.
+                        </p>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div>
+                        <h3 class="text-white mono-medium text-lg mb-6">CONTACT INFO</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3">
+                                <i data-lucide="mail" class="w-5 h-5 text-white/40"></i>
+                                <span class="text-white/60 mono-regular text-sm">omniserve001@gmail.com</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i data-lucide="phone" class="w-5 h-5 text-white/40"></i>
+                                <span class="text-white/60 mono-regular text-sm">+963 951 710 221</span>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <i data-lucide="map-pin" class="w-5 h-5 text-white/40 mt-0.5"></i>
+                                <span class="text-white/60 mono-regular text-sm">Damascus<br>Syria</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Business Hours -->
+                    <div>
+                        <h3 class="text-white mono-medium text-lg mb-6">BUSINESS HOURS</h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between">
+                                <span class="text-white/60 mono-regular text-sm">Monday - Friday</span>
+                                <span class="text-white/40 mono-regular text-sm">9:00 - 18:00</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-white/60 mono-regular text-sm">Saturday</span>
+                                <span class="text-white/40 mono-regular text-sm">10:00 - 16:00</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-white/60 mono-regular text-sm">Sunday</span>
+                                <span class="text-white/40 mono-regular text-sm">Closed</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Bottom -->
+                <div class="pt-8 border-t border-white/5 text-center">
+                    <p class="mono-light text-sm text-white/40">© 2025 OMNISERVE. ALL RIGHTS RESERVED.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Disable right-click context menu
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        // Disable F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+        document.addEventListener('keydown', function(e) {
+            // Disable F12
+            if (e.keyCode === 123) {
+                e.preventDefault();
+                return false;
+            }
+            // Disable Ctrl+Shift+I (Developer Tools)
+            if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
+                e.preventDefault();
+                return false;
+            }
+            // Disable Ctrl+Shift+J (Console)
+            if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
+                e.preventDefault();
+                return false;
+            }
+            // Disable Ctrl+U (View Source)
+            if (e.ctrlKey && e.keyCode === 85) {
+                e.preventDefault();
+                return false;
+            }
+            // Disable Ctrl+S (Save)
+            if (e.ctrlKey && e.keyCode === 83) {
+                e.preventDefault();
+                return false;
+            }
+            // Disable Ctrl+A (Select All)
+            if (e.ctrlKey && e.keyCode === 65) {
+                e.preventDefault();
+                return false;
+            }
+            // Disable Ctrl+P (Print)
+            if (e.ctrlKey && e.keyCode === 80) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // Disable drag and drop
+        document.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Language state
+        let currentLanguage = 'en';
+
+        // Translations object
+        const translations = {
+            en: {
+                'hero.title': 'DIGITAL\nSOLUTIONS',
+                'hero.subtitle': 'REDEFINED',
+                'hero.description': 'We craft exceptional digital experiences that transform ideas into reality. From stunning visuals to cutting-edge development.',
+                'hero.cta': 'EXPLORE OUR WORK',
+                'services.title': 'OUR EXPERTISE',
+                'services.subtitle': 'Comprehensive digital solutions tailored to your needs',
+                'portfolio.title': 'OUR WORK',
+                'portfolio.subtitle': 'Showcasing excellence across all digital domains',
+                'about.title': 'ABOUT OMNISERVE',
+                'about.description': 'We are a team of passionate creators and innovators, dedicated to delivering exceptional digital solutions that drive success.',
+                'contact.title': 'LET\'S CREATE TOGETHER',
+                'contact.description': 'Ready to bring your vision to life? Get in touch with us.'
+            },
+            ar: {
+                'hero.title': 'الحلول\nالرقمية',
+                'hero.subtitle': 'معاد تعريفها',
+                'hero.description': 'نحن نصنع تجارب رقمية استثنائية تحول الأفكار إلى واقع. من المرئيات المذهلة إلى التطوير المتطور.',
+                'hero.cta': 'استكشف أعمالنا',
+                'services.title': 'خبرتنا',
+                'services.subtitle': 'حلول رقمية شاملة مصممة خصيصاً لاحتياجاتك',
+                'portfolio.title': 'أعمالنا',
+                'portfolio.subtitle': 'عرض التميز عبر جميع المجالات الرقمية',
+                'about.title': 'حول أومني سيرف',
+                'about.description': 'نحن فريق من المبدعين والمبتكرين المتحمسين، مكرسون لتقديم حلول رقمية استثنائية تحقق النجاح.',
+                'contact.title': 'لنبدع معاً',
+                'contact.description': 'مستعد لتحويل رؤيتك إلى حياة؟ تواصل معنا.'
+            }
+        };
+
+        // Function to open image in new tab
+        function openImageInNewTab(imageSrc) {
+            window.open(imageSrc, '_blank');
+        }
+
+        // Hide splash screen after 5 seconds - WITH FADE-IN EFFECT
+        setTimeout(() => {
+            document.getElementById('splash-screen').style.display = 'none';
+            document.getElementById('navbar').style.transform = 'translateY(0)';
+            
+            // Add fade-in effect to main content
+            const mainContent = document.getElementById('main-content');
+            mainContent.classList.add('show');
+            
+            // Trigger individual element fade-in animations after main content starts fading in
+            setTimeout(() => {
+                const fadeElements = document.querySelectorAll('.fade-in');
+                fadeElements.forEach((element, index) => {
+                    setTimeout(() => {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }, index * 150);
+                });
+            }, 500); // Start individual animations 500ms after main content fade begins
+        }, 5000);
+
+        // Smooth scrolling function
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+            // Close mobile menu if open
+            document.getElementById('mobile-menu').classList.add('hidden');
+            document.querySelector('#mobile-menu-btn i').setAttribute('data-lucide', 'menu');
+            lucide.createIcons();
+        }
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const icon = this.querySelector('i');
+            
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                icon.setAttribute('data-lucide', 'x');
+            } else {
+                mobileMenu.classList.add('hidden');
+                icon.setAttribute('data-lucide', 'menu');
+            }
+            lucide.createIcons();
+        });
+
+        // Language toggle function
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === 'en' ? 'ar' : 'en';
+            
+            // Update language toggle button
+            const langToggle = document.getElementById('lang-toggle');
+            langToggle.textContent = currentLanguage === 'en' ? 'العربية' : 'ENGLISH';
+            
+            // Update text direction
+            document.body.className = currentLanguage === 'ar' ? 'bg-black text-white rtl smooth-scroll overflow-x-hidden' : 'bg-black text-white ltr smooth-scroll overflow-x-hidden';
+            
+            // Update all translatable elements
+            const translatableElements = document.querySelectorAll('[data-translate]');
+            translatableElements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[currentLanguage][key]) {
+                    if (key === 'hero.title') {
+                        element.innerHTML = translations[currentLanguage][key];
+                    } else {
+                        element.textContent = translations[currentLanguage][key];
+                    }
+                }
+            });
+        }
+
+        // Active section highlighting
+        function updateActiveSection() {
+            const sections = ['home', 'services', 'portfolio', 'about', 'contact'];
+            const scrollPosition = window.scrollY + 100;
+            
+            sections.forEach(sectionId => {
+                const element = document.getElementById(sectionId);
+                const navLink = document.querySelector(`button[onclick="scrollToSection('${sectionId}')"]`);
+                
+                if (element && navLink) {
+                    const { offsetTop, offsetHeight } = element;
+                    if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+                        // Remove active class from all nav links
+                        document.querySelectorAll('.nav-link').forEach(link => {
+                            link.classList.remove('text-white');
+                            link.classList.add('text-white/60');
+                        });
+                        // Add active class to current nav link
+                        navLink.classList.add('text-white');
+                        navLink.classList.remove('text-white/60');
+                    }
+                }
+            });
+        }
+
+        // Scroll event listener
+        window.addEventListener('scroll', updateActiveSection);
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.addEventListener('DOMContentLoaded', () => {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+
+        // Initialize icons after DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
